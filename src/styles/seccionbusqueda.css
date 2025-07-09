@@ -1,0 +1,91 @@
+.services-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.categories-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 2.5rem;
+  margin: 2rem 0;
+}
+
+.category-card {
+  background: white;
+  border: 0.5px solid #ededed;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;    
+  text-align: center;
+  transition: all 0.3s ease;
+  aspect-ratio: 1 / 1;       
+  max-width: 220px;          
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+.category-icon {
+  font-size: 38px;           
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+
+.category-name {
+  color: #2c3e50;
+  margin: 8px 0 4px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.category-count {
+  color: #7f8c8d;
+  font-size: 14px;
+  margin: 0;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 2px 4px 10px #337efb;
+}
+
+.explore-button {
+  display: block;
+  margin: 2rem auto 0;
+  padding: 0.8rem 2rem;
+  background-color: #18181b;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 550;
+  cursor: pointer;
+  width: 220px;
+  transition: background-color 0.3s;
+}
+
+.explore-button:hover {
+  background-color: #2979ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .categories-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .categories-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .services-title {
+    font-size: 36px !important;
+  }
+}

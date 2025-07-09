@@ -1,0 +1,84 @@
+.terminos-container {
+  min-height: 100vh;
+  background: white;
+  padding: 48px 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.terminos-content {
+  max-width: 900px;
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  padding: 40px;
+}
+
+.terminos-content h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 8px;
+}
+
+.last-updated {
+  color: #6b7280;
+  margin-bottom: 40px;
+  font-size: 0.95rem;
+}
+
+.terminos-content {
+  color: #6b7280;
+  margin-bottom: 40px;
+  font-size: 0.95rem;
+  text-align: justify;
+}
+
+.terminos-section {
+  margin-bottom: 40px;
+}
+
+.terminos-section h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 16px;
+}
+
+.terminos-section p {
+  color: #4b5563;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.terminos-section ul {
+  margin-left: 24px;
+  margin-bottom: 16px;
+}
+
+.terminos-section li {
+  color: #4b5563;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.terminos-section strong {
+  color: black;
+}
+
+.terminos-section ul ul {
+  margin-left: 20px;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .terminos-content {
+    padding: 24px;
+  }
+  
+  .terminos-content h1 {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,92 @@
+.business-promo-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  gap: 3rem;
+  align-items: center;
+}
+
+.text-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.image-content {
+  flex: 1;
+}
+
+.promo-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.promo-title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: black;
+  font-weight: bold;
+  text-align: left;
+  line-height: 1.2;
+  font-size: 55px;
+}
+
+.promo-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #B2BEB5;
+  margin-bottom: 2rem;
+  text-align: left;
+  font-size: 15px;
+}
+
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.action-button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.primary {
+  background: transparent;
+  color: black;
+  border: 2px solid black;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+
+.secondary {
+  background-color: #337efb;
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.secondary:hover {
+  background-color: #18181b;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .business-promo-container {
+    flex-direction: column;
+  }
+  
+  .image-content {
+    order: -1;
+    margin-bottom: 2rem;
+  }
+}

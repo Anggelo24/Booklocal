@@ -1,0 +1,217 @@
+.dashboard-wrapper {
+  padding: 2rem;
+  background-color: #f9fafb;
+  color: #222;
+}
+
+.header-seccion {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+
+.header-seccion .intro {
+  flex: 2;
+  text-align: left;
+}
+
+.header-seccion h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.header-seccion .description {
+  max-width: 600px;
+  margin: 0.5rem 0 1rem;
+  font-size: 16px;
+  color: gray;
+}
+
+.header-seccion select {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.pdfContable {
+  width: 500px;
+  height: 420px;
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.descargarPDF {
+  margin-top: 0.5rem;
+  color: black;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  box-shadow: 2px 2px 10px #337efb;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  border: none;
+}
+
+.descargarPDF:hover {
+  box-shadow: 2px 2px 10px #337efb;
+  border: none;
+}
+
+.estadisticas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.estadisticasCard {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.estadisticasCard h3 {
+  font-size: 22px;
+  margin: 0.5rem 0;
+}
+
+.estadisticasCard .sub {
+  font-size: 13px;
+  color: #666;
+}
+
+.graficacas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.graficaca-card {
+  flex: 1;
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.graficaca-card img {
+  width: 80%;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.seccionServicios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;     
+    margin: 2rem 0;
+}
+
+.tablaServicios {
+  width: 85%;
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.serviciosFila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.serviciosFila:last-child {
+  border-bottom: none;
+}
+
+.botonStatus {
+  background: #18181B;
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 20px;
+}
+
+.botonStatus:hover {
+  box-shadow: 2px 2px 10px #337efb;
+}
+
+
+.bottom-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.activity-card,
+.agenda-card {
+  flex: 1;
+  background: white;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.activity-card ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.activity-card li {
+  font-size: 14px;
+  margin: 0.5rem 0;
+  color: #444;
+}
+
+/* ---------- Agenda ---------- */
+.agenda-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.agenda-item:last-child {
+  border-bottom: none;
+}
+
+.agenda-btn {
+  background: #e0eaff;
+  color: #2563eb;
+  font-weight: 600;
+  border: none;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+/* ---------- Responsiveness ---------- */
+@media (max-width: 768px) {
+  .header-seccion {
+    flex-direction: column;
+  }
+
+  .charts-grid,
+  .bottom-grid {
+    flex-direction: column;
+  }
+}

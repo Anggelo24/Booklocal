@@ -1,0 +1,119 @@
+.top-rated {
+  padding: 3rem 2rem;
+  text-align: center;
+  background-color: #f9fafb;
+}
+
+.top-rated h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.pro-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.pro-card:hover {
+  transform: translateY(-5px);
+}
+
+.pro-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.pro-info {
+  padding: 1rem;
+  text-align: left;
+}
+
+.pro-info h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 0.9rem;
+  margin: 0.
+}
+
+.details {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0.5rem 0;
+  align-items: center;
+}
+
+.details svg {
+  margin-right: 0.3rem;
+  color: #fbc02d; /* star and location icon color */
+}
+
+.star {
+  color: #fbc02d;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.author {
+  color: #666;
+}
+
+.price {
+  background-color: #f5f5f5;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.explore-button {
+  margin-top: 2rem;
+}
+
+.explore-button button {
+  display: block;
+  margin: 2rem auto 0;
+  padding: 0.8rem 2rem;
+  background-color: #18181b;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 550;
+  font-size: 14px;
+  cursor: pointer;
+  width: 20px;
+  transition: background-color 0.3s;
+}
+
+.explore-button button:hover {
+   background-color: #337ff7;
+}
