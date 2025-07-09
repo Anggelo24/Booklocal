@@ -39,15 +39,15 @@ const BarraBusqueda = () => {
       precioMin: price[0],
       precioMax: price[1]
     });
-    // Aquí luego puedes redirigir o aplicar filtros a resultados
   };
 
   return (
-    <div className="search-bar">
+    <div className="search-filters-container">
+      
       {/* Provincia */}
-      <div className="search-group">
+      <div className="search-filter-group">
         <label>Ubicación
-          <select name="ubicacion" value={filtro.provincia} onChange={handleChange}>
+          <select name="provincia" value={filtro.provincia} onChange={handleChange}>
             <option value="">Cualquiera</option>
             {provincia.map((u, i) => (
               <option key={i} value={u.provincia}>{u.provincia}</option>
@@ -57,7 +57,7 @@ const BarraBusqueda = () => {
       </div>
 
       {/* Servicio */}
-      <div className="search-group">
+      <div className="search-filter-group">
         <label>Servicios
           <select name="servicio" value={filtro.servicio} onChange={handleChange}>
             <option value="">Cualquiera</option>
@@ -69,7 +69,7 @@ const BarraBusqueda = () => {
       </div>
 
       {/* Precio */}
-      <div className="search-group price-slider">
+      <div className="search-filter-group price-filter-slider">
         <label>Precio
           <div className="range-slider-container">
             <input
@@ -79,13 +79,20 @@ const BarraBusqueda = () => {
               value={price[0]}
               onChange={(e) => setPrice([+e.target.value, price[1]])}
             />
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={price[1]}
+              onChange={(e) => setPrice([price[0], +e.target.value])}
+            />
           </div>
           <div className="price-range-display">${price[0]} - ${price[1]}</div>
         </label>
       </div>
 
       {/* Calificación */}
-      <div className="search-group">
+      <div className="search-filter-group">
         <label>Calificación
           <select name="calificacion" value={filtro.calificacion} onChange={handleChange}>
             <option value="">Cualquiera</option>
@@ -98,7 +105,8 @@ const BarraBusqueda = () => {
         </label>
       </div>
 
-      <button className="search-button" onClick={handleBuscar}>
+      {/* Botón */}
+      <button className="search-filters-button" onClick={handleBuscar}>
         <FaSearch />
       </button>
     </div>
