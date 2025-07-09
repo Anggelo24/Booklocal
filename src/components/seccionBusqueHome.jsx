@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/seccionbusqueda.css'; 
 import BarraBusqueda from './barraBusqueda';
-
 import {
   FaLaptopCode,
   FaChalkboardTeacher,
@@ -21,6 +20,7 @@ import { GrUserWorker } from 'react-icons/gr';
 import { MdCleaningServices } from 'react-icons/md';
 import { RiUserStarFill, RiToolsFill } from 'react-icons/ri';
 import { BiUserCheck, BiBrush } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
 
 const iconMap = {
   FaLaptopCode: <FaLaptopCode />,
@@ -53,7 +53,7 @@ const SeccionBusqueda = () => {
       .then(data => setServiceCategories(data))
       .catch(err => console.error('Error al cargar categorías:', err));
   }, []);
-
+  const navigate = useNavigate();
   return (
     <section className="services-container">
       <h1 className="services-title" style={{color:'black', fontSize:'48px', fontWeight:'750'}}>
@@ -83,7 +83,13 @@ const SeccionBusqueda = () => {
         ))}
       </div>
 
-      <button className="explore-button">Explorar categorías</button>
+  <button 
+      className="explore-button"
+      onClick={() => navigate('/categorias')}
+    >
+      Explorar categorías
+    </button>
+
     </section>
   );
 };

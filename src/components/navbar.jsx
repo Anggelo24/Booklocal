@@ -43,6 +43,11 @@ const Navbar = () => {
                 Panel Profesional (Para Ejemplo)
               </Link>
             </li>
+            <li>
+              <Link to="/perfilprofesional" style={{color: '#88898a'}}>
+                Perfil Profesional (Para Ejemplo)
+              </Link>
+            </li>
           </ul>
           
           <div className="nav-actions">

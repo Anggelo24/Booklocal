@@ -1,0 +1,110 @@
+.search-bar-container {
+  margin: 20px auto;
+  position: relative;
+  background: white;
+  min-width: 300px;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  padding: 2px;
+  border-radius: 16px;
+  gap: 8px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.099);
+}
+
+.search-bar-container:focus-within {
+  border-color: #999;
+}
+
+.search-input {
+  padding: 8px 24px;
+  width: 100%;
+  border-radius: 6px;
+  flex: 1;
+  outline: none;
+  background: white;
+  border: none;
+  font-size: 16px;
+}
+
+.search-button {
+  width: 50%;
+  padding: 12px 15px;
+  background: #2979ff;
+  color: white;
+  cursor: pointer;
+  border-radius: 14px;
+  transition: all 0.1s ease;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+}
+
+.search-button:active {
+  transform: scale(0.95);
+}
+
+.search-button:disabled {
+  opacity: 0.7;
+}
+
+.spinner-container {
+  position: relative;
+}
+
+.spinner-icon {
+  opacity: 0;
+  animation: spin 1s linear infinite;
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.spinner-circle {
+  opacity: 0.25;
+  stroke: currentColor;
+  stroke-width: 4;
+}
+
+.spinner-path {
+  opacity: 0.75;
+  fill: currentColor;
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+
+.button-text {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 auto;
+}
+
+/* Media query for desktop view */
+@media (min-width: 768px) {
+  .search-bar-container {
+    flex-direction: row;
+  }
+  
+  .search-button {
+    width: auto;
+  }
+}

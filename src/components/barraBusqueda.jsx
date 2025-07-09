@@ -71,7 +71,7 @@ const BarraBusqueda = () => {
       {/* Precio */}
       <div className="search-group price-slider">
         <label>Precio
-          <div className="slider-container">
+          <div className="range-slider-container">
             <input
               type="range"
               min="0"
@@ -79,15 +79,8 @@ const BarraBusqueda = () => {
               value={price[0]}
               onChange={(e) => setPrice([+e.target.value, price[1]])}
             />
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={price[1]}
-              onChange={(e) => setPrice([price[0], +e.target.value])}
-            />
           </div>
-          <div className="price-range">${price[0]} - ${price[1]}</div>
+          <div className="price-range-display">${price[0]} - ${price[1]}</div>
         </label>
       </div>
 

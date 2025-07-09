@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/footer.css";
 
 const Footer = () => {
@@ -6,16 +7,16 @@ const Footer = () => {
     <footer className="footer-container">
       <div className="footer-content">
         <img 
-    src="https://res.cloudinary.com/db3espoei/image/upload/v1750384679/logo_booklocal_czvlup.png" 
-    alt="BookLocal Logo" 
-    style={{ height: '45px', padding: '2px' }} 
-     />
+          src="https://res.cloudinary.com/db3espoei/image/upload/v1750384679/logo_booklocal_czvlup.png" 
+          alt="BookLocal Logo" 
+          style={{ height: '45px', padding: '2px' }} 
+        />
         
         <div className="links-section">
-          <a href="/contacto" className="footer-link">Contacto</a>
-          <a href="/acerca-de" className="footer-link">Acerca De</a>
-          <a href="/terminos" className="footer-link">Términos</a>
-          <a href="/privacidad" className="footer-link">Privacidad</a>
+          <Link to="/contacto" className="footer-link">Contacto</Link>
+          <Link to="/acercade" className="footer-link">Acerca De</Link>
+          <Link to="/terminos" className="footer-link">Términos y Condiciones</Link>
+          <Link to="/privacidad" className="footer-link">Privacidad</Link>
         </div>
       </div>
       
