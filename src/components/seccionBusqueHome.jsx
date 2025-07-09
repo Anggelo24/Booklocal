@@ -6,8 +6,10 @@ import { TbPlant } from "react-icons/tb";
 import { PiDogFill, PiBarbellDuotone } from "react-icons/pi";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { GrUserWorker } from "react-icons/gr";
+import { useNavigate } from 'react-router-dom';
 
 const SeccionBusqueda = () => {
+  const navigate = useNavigate();
   const serviceCategories = [
     { name: 'Tecnología', count: '123 Servicios', icon: <FaLaptopCode /> },
     { name: 'Jardinería', count: '123 Servicios', icon: <TbPlant /> },
@@ -40,7 +42,13 @@ const SeccionBusqueda = () => {
         ))}
       </div>
 
-      <button className="explore-button">Explorar categorías</button>
+  <button 
+      className="explore-button"
+      onClick={() => navigate('/categorias')}
+    >
+      Explorar categorías
+    </button>
+
     </section>
   );
 };

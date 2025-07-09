@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/seccioncalificados.css';
 import { FaMapMarkerAlt, FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const profesionales = [
   {
@@ -93,13 +94,12 @@ const profesionales = [
     image: '/images/pro1.jpg',
 },
 
-
 ];
 
 const SeccionCalificados = () => {
-
+const navigate = useNavigate();
   return (
-    <div className="section-header">
+    <div className="section-header" >
       <h1>Mejor Calificados</h1>
       <h3 style={{color: '#B2BEB5', fontSize:'18px', paddingBottom:'25px', fontWeight:'200'}}>Descubre los profesionales con mejor rating </h3>
       <section className="top-rated">
@@ -127,7 +127,12 @@ const SeccionCalificados = () => {
             </Link>
           ))}
         </div>
-        <button className="explore-button">Explorar todo</button>
+        <button 
+      className="explore-button"
+      onClick={() => navigate('/explorartodo')}
+    >
+      Explorar Todo
+    </button>
       </section>
     </div>
   );

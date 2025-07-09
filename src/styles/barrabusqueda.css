@@ -1,4 +1,5 @@
-.search-bar {
+/* Main container */
+.search-filters-container {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -11,7 +12,8 @@
   overflow-x: auto;
 }
 
-.search-group {
+/* Filter groups */
+.search-filter-group {
   display: flex;
   flex-direction: column;
   font-size: 0.9rem;
@@ -19,7 +21,7 @@
   color: #333;
 }
 
-.search-group input {
+.search-filter-group input {
   font-weight: normal;
   font-size: 0.9rem;
   padding: 0.4rem 0.5rem;
@@ -29,25 +31,26 @@
   width: 160px;
 }
 
-.price-slider {
+/* Price filter specific styles */
+.price-filter-slider {
   min-width: 180px;
 }
 
-.slider-container {
+.range-slider-container {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.slider-container input[type="range"] {
+.range-slider-container input[type="range"] {
   -webkit-appearance: none;
   height: 0.5px;
-  background: #ccc;
+  background: #d9ebff;
   border-radius: 8px;
-  width: 70px;
+  width: 150px;
 }
 
-.slider-container input[type="range"]::-webkit-slider-thumb {
+.range-slider-container input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 14px;
   width: 14px;
@@ -56,13 +59,14 @@
   cursor: pointer;
 }
 
-.price-range {
+.price-range-display {
   font-size: 0.75rem;
   color: black;
   margin-top: 0.2rem;
 }
 
-.search-button {
+/* Search button */
+.search-filters-button {
   background-color: #2979ff;
   color: white;
   border: none;
@@ -75,4 +79,19 @@
   height: 60px;
   width: 60px;
   margin-left: 70px;
+  transition: all 0.2s ease;
+}
+
+.search-filters-button:hover {
+  background-color: #1a68e5;
+  transform: scale(1.05);
+}
+
+.search-filters-button:active {
+  transform: scale(0.98);
+}
+
+.search-filters-button svg {
+  width: 20px;
+  height: 20px;
 }

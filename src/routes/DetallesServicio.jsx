@@ -5,7 +5,7 @@ import ServicioReview from '../components/servicioReview';
 import ServicioProfesional from '../components/servicioProfesional';
 import ServicioPaquetes from '../components/servicioPaquetes';
 import ServicioSocial from '../components/servicioSocial';
-import { mockService } from '../ejemplo/ejemploServicios'; // 
+import { mockService } from '../ejemplo/ejemploServicios'; 
 import '../styles/serviciodetalles.css';
 
 const DetallesServicio = ({ service = mockService, onBack = () => window.history.back() }) => {
