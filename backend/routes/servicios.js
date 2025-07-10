@@ -35,7 +35,7 @@ router.get('/', async (req, res) => {
     `);
 
     console.log('✅ Servicios consultados:', servicios.length);
-    const parsedServicios = servicios.map((s) => {
+const parsedServicios = servicios.map((s) => {
   const result = {};
   for (let key in s) {
     const value = s[key];
@@ -43,6 +43,8 @@ router.get('/', async (req, res) => {
   }
   return result;
 });
+
+res.json(parsedServicios);
 
 res.json(parsedServicios);
   } catch (err) {

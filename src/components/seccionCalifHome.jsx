@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaMapMarkerAlt, FaStar } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/seccioncalificados.css';
 
 const SeccionCalificados = () => {
@@ -13,12 +12,12 @@ const SeccionCalificados = () => {
   useEffect(() => {
     axios.get('/api/servicios')
       .then((res) => {
-        console.log('Datos recibidos:', res.data); // Para debugging
+        console.log('✅ Datos recibidos:', res.data);
         setProfesionales(res.data);
         setLoading(false);
       })
       .catch((err) => {
-        console.error('Error al cargar servicios:', err);
+        console.error('❌ Error al cargar servicios:', err);
         setLoading(false);
       });
   }, []);
@@ -44,17 +43,19 @@ const SeccionCalificados = () => {
             >
               <img
                 src={pro.imagen_destacada || '/images/pro1.jpg'}
-                alt={pro.nombre}
+                alt={pro.servicio_nombre}
                 className="pro-image"
               />
               <div className="pro-info">
-                <h3>{pro.nombre}</h3>
+                <h3>{pro.servicio_nombre}</h3>
                 <p className="description">{pro.descripcion}</p>
                 <div className="details">
                   <span>
                     <FaMapMarkerAlt /> {pro.provincia || 'Ubicación no especificada'}
                   </span>
-                  <span><FaStar className="star" /> 5.0 (12 Reviews)</span>
+                  <span>
+                    <FaStar className="star" /> {pro.calificacion_promedio || '5.0'} ({pro.total_reviews || 0} Reviews)
+                  </span>
                 </div>
                 <div className="footer">
                   <span className="author">
@@ -66,7 +67,7 @@ const SeccionCalificados = () => {
             </Link>
           ))}
         </div>
-        <button 
+        <button
           className="explore-button"
           onClick={() => navigate('/explorartodo')}
         >
