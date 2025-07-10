@@ -5,23 +5,30 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import '../styles/seccioncalificados.css';
 
-
 const SeccionCalificados = () => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const [profesionales, setProfesionales] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios.get('/api/servicios')
       .then((res) => {
+        console.log('Datos recibidos:', res.data); // Para debugging
         setProfesionales(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.error('Error al cargar servicios:', err);
+        setLoading(false);
       });
   }, []);
 
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
+
   return (
-    <div className="section-header" >
+    <div className="section-header">
       <h1>Mejor Calificados</h1>
       <h3 style={{ color: '#B2BEB5', fontSize: '18px', paddingBottom: '25px', fontWeight: '200' }}>
         Descubre los profesionales con mejor rating
@@ -44,11 +51,15 @@ const navigate = useNavigate();
                 <h3>{pro.nombre}</h3>
                 <p className="description">{pro.descripcion}</p>
                 <div className="details">
-                  <span><FaMapMarkerAlt /> Panamá</span>
+                  <span>
+                    <FaMapMarkerAlt /> {pro.provincia || 'Ubicación no especificada'}
+                  </span>
                   <span><FaStar className="star" /> 5.0 (12 Reviews)</span>
                 </div>
                 <div className="footer">
-                  <span className="author">By. {pro.profesional} {pro.apellido}</span>
+                  <span className="author">
+                    By. {pro.profesional} {pro.apellido}
+                  </span>
                   <span className="price">Desde ${pro.precio}</span>
                 </div>
               </div>
@@ -56,11 +67,11 @@ const navigate = useNavigate();
           ))}
         </div>
         <button 
-      className="explore-button"
-      onClick={() => navigate('/explorartodo')}
-    >
-      Explorar Todo
-    </button>
+          className="explore-button"
+          onClick={() => navigate('/explorartodo')}
+        >
+          Explorar Todo
+        </button>
       </section>
     </div>
   );
