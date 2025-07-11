@@ -14,6 +14,9 @@ app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Rutas API
+const resetPasswordRoutes = require('./routes/reset-password');
+app.use('/api/reset-password', resetPasswordRoutes);
+
 const serviciosRoutes = require('./routes/servicios');
 app.use('/api/servicios', serviciosRoutes);
 
@@ -25,6 +28,12 @@ app.use('/api/provincias', provinciasRoutes);
 
 const serviciosDisponiblesRoutes = require('./routes/serviciosDisponibles');
 app.use('/api/servicios-disponibles', serviciosDisponiblesRoutes);
+
+const usuariosRoutes = require('./routes/usuarios');
+app.use('/api/usuarios', usuariosRoutes);
+
+const loginRoutes = require('./routes/login');
+app.use('/api/login', loginRoutes);
 
 // Ruta de prueba para verificar que el servidor responde
 app.get('/api/ping', (req, res) => {
