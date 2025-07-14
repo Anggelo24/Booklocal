@@ -14,11 +14,17 @@ app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Rutas API
+const reportesRoutes = require('./routes/reportes');
+app.use('/api/reportes', reportesRoutes);
+
 const resetPasswordRoutes = require('./routes/reset-password');
 app.use('/api/reset-password', resetPasswordRoutes);
 
 const serviciosRoutes = require('./routes/servicios');
 app.use('/api/servicios', serviciosRoutes);
+
+const servicioDetalleRoutes = require('./routes/servicioDetalle');
+app.use('/api/servicio', servicioDetalleRoutes);
 
 const categoriasRoutes = require('./routes/categorias');
 app.use('/api/categorias', categoriasRoutes);
@@ -28,7 +34,6 @@ app.use('/api/provincias', provinciasRoutes);
 
 const serviciosDisponiblesRoutes = require('./routes/serviciosDisponibles');
 app.use('/api/servicios-disponibles', serviciosDisponiblesRoutes);
-
 const usuariosRoutes = require('./routes/usuarios');
 app.use('/api/usuarios', usuariosRoutes);
 

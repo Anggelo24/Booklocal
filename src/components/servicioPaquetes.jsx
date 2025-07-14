@@ -18,10 +18,10 @@ const ServicioPaquetes = ({ packages }) => {
             onKeyDown={(e) => e.key === 'Enter' && setSelectedPackage(pkg.id)}
           >
             <div className="package-header">
-              <strong style={{ fontWeight: '600' }}>{pkg.name}</strong>
-              <span style={{ fontWeight: 'bolder', fontSize:'14px' }}>${pkg.price}</span>
+              <strong style={{ fontWeight: '600' }}>{pkg.nombre}</strong>
+              <span style={{ fontWeight: 'bolder', fontSize: '14px' }}>${pkg.precio}</span>
             </div>
-            <p style={{ fontWeight: '100', textAlign: 'left', fontSize: '14px' }}>{pkg.description}</p>
+            <p style={{ fontWeight: '100', textAlign: 'left', fontSize: '14px' }}>{pkg.descripcion}</p>
           </div>
         ))}
       </div>
