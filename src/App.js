@@ -14,6 +14,7 @@ import Privacidad from './routes/Privacidad';
 import Terminos from './routes/Terminos';
 import Categorias from './routes/Categorias';
 import ExplorarTodo from './routes/ExplorarTodo';
+import PublicarServicioForm from './components/publicarServicioForm';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/terminos" element={<Terminos />} />
           <Route path="/categorias" element={<Categorias />} />
           <Route path="/explorartodo" element={<ExplorarTodo />} />
+          <Route path="/publicarservicio" element={<PublicarServicioForm />} />
         </Routes>
         <Footer />
       </div>

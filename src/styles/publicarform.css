@@ -1,0 +1,453 @@
+.publish-form-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-step-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin: 40px 0 60px;
+  padding-top: 50px;
+  position: relative;
+}
+
+
+.step {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  color: #6b7280;
+  font-weight: bold;
+  text-align: center;
+  line-height: 40px;
+  position: relative;
+  z-index: 1;
+  font-size: 16px;
+}
+
+.step.completed {
+  background: #337EFB;
+  color: white;
+}
+
+.form-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.form-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.form-subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: #6b7280;
+  margin-bottom: 40px;
+}
+
+/* Estilos del formulario */
+.profile-form fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+}
+
+.profile-form legend {
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #111827;
+  display: block;
+  width: 100%;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px 14px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  outline: none;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #337EFB;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding-top: 8px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+  padding-left: 28px;
+}
+
+.checkbox-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.checkbox-label:hover .checkmark {
+  border-color: #337EFB;
+}
+
+.checkbox-label input:checked ~ .checkmark {
+  background-color: #337EFB;
+  border-color: #337EFB;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Botones del formulario */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.form-actions button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.form-actions button[type="button"] {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.form-actions button[type="button"]:hover {
+  background-color: #d1d5db;
+}
+
+.form-actions button[type="submit"],
+.publish-button {
+  background-color: #337EFB;
+  color: white;
+}
+
+.form-actions button[type="submit"]:hover,
+.publish-button:hover {
+  background-color: #337EFB;
+}
+
+/* Estilos para subida de archivos */
+.upload-box {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.photo-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #f3f4f6;
+  margin-bottom: 16px;
+  border: 2px dashed #d1d5db;
+  overflow: hidden;
+  position: relative;
+}
+
+.photo-placeholder::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: #9ca3af;
+}
+
+.upload-button {
+  padding: 10px 20px;
+  background-color: #337EFB;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.upload-button:hover {
+  background-color: #337EFB;
+}
+
+.upload-hint {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.doc-upload {
+  position: relative;
+}
+
+.doc-placeholder {
+  padding: 40px 20px;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #f9fafb;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.doc-placeholder:hover {
+  border-color: #337EFB;
+  background-color: #f0fdf4;
+}
+
+.upload-icon {
+  font-size: 24px;
+  color: #9ca3af;
+  margin-bottom: 12px;
+}
+
+.upload-text {
+  color: #374151;
+  font-size: 16px;
+  margin: 0 0 4px 0;
+  font-weight: 500;
+}
+
+.upload-subtext {
+  color: #6b7280;
+  font-size: 12px;
+  margin: 0;
+}
+
+.file-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Estilos para los servicios */
+.service-fieldset {
+  position: relative;
+  margin-bottom: 40px;
+  padding: 30px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.service-fieldset legend {
+  font-size: 18px;
+  padding: 0 10px;
+  margin-bottom: 20px;
+  border: none;
+}
+
+.remove-service {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.remove-service:hover {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.service-documents {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.service-documents legend {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+/* Input de precio */
+.price-input {
+  position: relative;
+}
+
+.price-input .currency-symbol {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.price-input input {
+  padding-left: 30px !important;
+}
+
+/* Botón para agregar servicio */
+.add-service-container {
+  text-align: center;
+  padding: 30px 0 50px;
+}
+
+.add-service-button {
+  background-color: white;
+  border-radius: 8px;
+  width: 300px;
+  padding: 14px;
+  border: 1.5px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 16px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.add-service-button:hover {
+  background-color: #f9fafb;
+  border-color: #337EFB;
+  color: #337EFB;
+}
+
+.plus-icon {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-step-indicator {
+    gap: 30px;
+    padding-top: 30px;
+  }
+  
+  .form-wrapper {
+    padding: 20px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .add-service-button {
+    width: 100%;
+    max-width: 300px;
+  }
+}

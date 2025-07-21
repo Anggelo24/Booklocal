@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/seccionimpulsar.css";
-
 const SeccionImpulsar = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="business-promo-container">
       <div className="text-content">
@@ -14,7 +16,12 @@ const SeccionImpulsar = () => {
       
         
         <div className="action-buttons">
-          <button className="action-button primary">Publica un servicio</button>
+          <button 
+      className="action-button primary"
+      onClick={() => navigate('/publicarservicio')}
+    >
+      Publica un servicio
+    </button>
           <button className="action-button secondary">Aprende más</button>
         </div>
       </div>
