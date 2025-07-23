@@ -15,9 +15,18 @@ import Terminos from './routes/Terminos';
 import Categorias from './routes/Categorias';
 import ExplorarTodo from './routes/ExplorarTodo';
 import ResetPassword from './components/resetPasswordForm';
+import Pago from './components/pago';
+import PaypalCheckoutButton from './components/paypalCheckoutButton';
+import ConfirmarReserva from './components/confirmarReserva';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import Reseña from './components/reseña';
 
 function App() {
   return (
+        <PayPalScriptProvider options={{
+      'client-id': 'AboRS5ck10v0ZdZPQTDO66BT0QEffkubCa0uo6Nl66F8eQcnhWJXhLKRJV2O6zvJyC5TCfQr8le8BaGZ',
+      currency: 'USD',
+    }}>
       <div className="App">
         <Navbar />
         <Routes>
@@ -34,9 +43,14 @@ function App() {
           <Route path="/categorias" element={<Categorias />} />
           <Route path="/explorartodo" element={<ExplorarTodo />} />
           <Route path="/forgot-password" element={<ResetPassword />} />
+          <Route path="/pago/:reservaId" element={<Pago />} />
+          <Route path="/paypalCheckoutButton" element={<PaypalCheckoutButton />} />
+          <Route path="/confirmarReserva/:id" element={<ConfirmarReserva />} />
+          <Route path="/reseña/:reservaId" element={<Reseña />} />
         </Routes>
         <Footer />
       </div>
+      </PayPalScriptProvider>
   );
 }
 

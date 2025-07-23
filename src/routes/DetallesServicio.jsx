@@ -79,7 +79,12 @@ const DetallesServicio = ({ onBack = () => window.history.back() }) => {
         </div>
 
         <div className="right">
-          <ServicioPaquetes packages={service.paquetes} />
+          <ServicioPaquetes
+            idServicio={service.id_servicio}
+            nombre={service.nombre}
+            precio={service.precio}
+            descripcion={service.descripcion}
+          />
           <ServicioSocial idProfesional={service.id_profesional} />
         </div>
       </div>

@@ -34,11 +34,24 @@ app.use('/api/provincias', provinciasRoutes);
 
 const serviciosDisponiblesRoutes = require('./routes/serviciosDisponibles');
 app.use('/api/servicios-disponibles', serviciosDisponiblesRoutes);
+
 const usuariosRoutes = require('./routes/usuarios');
 app.use('/api/usuarios', usuariosRoutes);
 
+const pagosRoutes = require('./routes/pagos');
+app.use('/api/pagos', pagosRoutes);
+
 const loginRoutes = require('./routes/login');
 app.use('/api/login', loginRoutes);
+
+const reservasRoutes = require('./routes/reservas');
+app.use('/api/reservas', reservasRoutes);
+
+const reservasDetallePagoRoutes = require('./routes/reservasDetallePago'); 
+app.use('/api/reservas', reservasDetallePagoRoutes);
+
+const resenasRoutes = require('./routes/resenas');
+app.use('/api/resenas', resenasRoutes);
 
 // Ruta de prueba para verificar que el servidor responde
 app.get('/api/ping', (req, res) => {
