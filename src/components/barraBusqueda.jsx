@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/barrabusqueda.css'; 
 import { FaSearch } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const BarraBusqueda = () => {
+  const navigate = useNavigate();
   const [provincia, setProvincias] = useState([]);
   const [servicios, setServicios] = useState([]);
   const [price, setPrice] = useState([0, 100]);
@@ -33,13 +35,17 @@ const BarraBusqueda = () => {
     setFiltro({ ...filtro, [e.target.name]: e.target.value });
   };
 
-  const handleBuscar = () => {
-    console.log({
-      ...filtro,
-      precioMin: price[0],
-      precioMax: price[1]
-    });
-  };
+const handleBuscar = () => {
+  const query = new URLSearchParams({
+    provincia: filtro.provincia,
+    servicio: filtro.servicio,
+    calificacion: filtro.calificacion,
+    precioMin: price[0],
+    precioMax: price[1],
+  }).toString();
+
+  navigate(`/explorarFiltrados?${query}`);
+};
 
   return (
     <div className="search-filters-container">
@@ -51,18 +57,6 @@ const BarraBusqueda = () => {
             <option value="">Cualquiera</option>
             {provincia.map((u, i) => (
               <option key={i} value={u.provincia}>{u.provincia}</option>
-            ))}
-          </select>
-        </label>
-      </div>
-
-      {/* Servicio */}
-      <div className="search-filter-group">
-        <label>Servicios
-          <select name="servicio" value={filtro.servicio} onChange={handleChange}>
-            <option value="">Cualquiera</option>
-            {servicios.map((s, i) => (
-              <option key={i} value={s.nombre}>{s.nombre}</option>
             ))}
           </select>
         </label>

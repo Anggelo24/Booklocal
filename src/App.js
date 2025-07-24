@@ -20,6 +20,9 @@ import PaypalCheckoutButton from './components/paypalCheckoutButton';
 import ConfirmarReserva from './components/confirmarReserva';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import Reseña from './components/reseña';
+import ExplorarTodos from './components/explorarTodos';
+import ExplorarCategoria from './components/explorarCategoria';
+import ExplorarFiltrados from './components/explorarFiltrados';
 
 function App() {
   return (
@@ -47,6 +50,9 @@ function App() {
           <Route path="/paypalCheckoutButton" element={<PaypalCheckoutButton />} />
           <Route path="/confirmarReserva/:id" element={<ConfirmarReserva />} />
           <Route path="/reseña/:reservaId" element={<Reseña />} />
+          <Route path="/explorarTodos" element={<ExplorarTodos />} />
+          <Route path="/explorarCategoria/:id_categoria" element={<ExplorarCategoria />} />
+          <Route path="/explorarFiltrados" element={<ExplorarFiltrados />} />
         </Routes>
         <Footer />
       </div>

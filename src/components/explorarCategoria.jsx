@@ -1,40 +1,38 @@
+// src/pages/ExplorarCategoria.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaMapMarkerAlt, FaStar } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import '../styles/seccioncalificados.css';
 
-const SeccionCalificados = () => {
-  const navigate = useNavigate();
-  const [profesionales, setProfesionales] = useState([]);
+const ExplorarCategoria = () => {
+  const { id_categoria } = useParams();
+  const [servicios, setServicios] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/api/servicios')
-      .then((res) => {
-        console.log('✅ Datos recibidos:', res.data);
-        setProfesionales(res.data);
+    axios.get(`/api/servicios/categoria/${id_categoria}`)
+      .then(res => {
+        setServicios(res.data);
         setLoading(false);
       })
-      .catch((err) => {
-        console.error('❌ Error al cargar servicios:', err);
+      .catch(err => {
+        console.error('Error al obtener servicios:', err);
         setLoading(false);
       });
-  }, []);
+  }, [id_categoria]);
 
-  if (loading) {
-    return <div>Cargando...</div>;
-  }
+  if (loading) return <div>Cargando servicios...</div>;
 
   return (
     <div className="section-header">
-      <h1>Mejor Calificados</h1>
+      <h1>Servicios por Categoría</h1>
       <h3 style={{ color: '#B2BEB5', fontSize: '18px', paddingBottom: '25px', fontWeight: '200' }}>
-        Descubre los profesionales con mejor rating
+        Explora todos los servicios disponibles en esta categoría
       </h3>
       <section className="top-rated">
         <div className="card-grid">
-          {profesionales.map((pro, index) => (
+          {servicios.map((pro, index) => (
             <Link
               key={index}
               to={`/servicio/${pro.id_servicio}`}
@@ -50,32 +48,20 @@ const SeccionCalificados = () => {
                 <h3>{pro.servicio_nombre}</h3>
                 <p className="description">{pro.descripcion}</p>
                 <div className="details">
-                  <span>
-                    <FaMapMarkerAlt /> {pro.provincia || 'Ubicación no especificada'}
-                  </span>
-                  <span>
-                    <FaStar className="star" /> {pro.calificacion_promedio || '5.0'} ({pro.total_reviews || 0} Reviews)
-                  </span>
+                  <span><FaMapMarkerAlt /> {pro.provincia}</span>
+                  <span><FaStar className="star" /> {pro.calificacion_promedio} ({pro.total_reviews} Reviews)</span>
                 </div>
                 <div className="footer">
-                  <span className="author">
-                    By. {pro.profesional} {pro.apellido}
-                  </span>
+                  <span className="author">By. {pro.profesional} {pro.apellido}</span>
                   <span className="price">Desde ${pro.precio}</span>
                 </div>
               </div>
             </Link>
           ))}
         </div>
-        <button
-          className="explore-button"
-          onClick={() => navigate('/explorarTodo')}
-        >
-          Explorar Todo
-        </button>
       </section>
     </div>
   );
 };
 
-export default SeccionCalificados;
+export default ExplorarCategoria;

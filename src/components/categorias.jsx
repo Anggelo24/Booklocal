@@ -1,18 +1,10 @@
+// src/pages/Categorias.jsx
 import React, { useEffect, useState } from 'react';
-import '../styles/seccionbusqueda.css'; 
-import BarraBusqueda from './barraBusqueda';
+import '../styles/seccionbusqueda.css';
 import {
-  FaLaptopCode,
-  FaChalkboardTeacher,
-  FaHeart,
-  FaHammer,
-  FaCut,          // barbería (tijeras)
-  FaToiletPaper,  // plomería (símbolo WC)
-  FaPaw,          // mascotas
-  FaBroom,        // limpieza
-  FaCar,          // automotriz
+  FaLaptopCode, FaChalkboardTeacher, FaHeart, FaHammer,
+  FaCut, FaToiletPaper, FaPaw, FaBroom, FaCar
 } from 'react-icons/fa';
-
 import { TbPlant } from 'react-icons/tb';
 import { PiDogFill, PiBarbellDuotone } from 'react-icons/pi';
 import { LiaChalkboardTeacherSolid } from 'react-icons/lia';
@@ -44,35 +36,28 @@ const iconMap = {
   BiBrush: <BiBrush />,
 };
 
-const SeccionBusqueda = () => {
-  const [serviceCategories, setServiceCategories] = useState([]);
+const CategoriasComponent = () => {
 
+  const [categorias, setCategorias] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     fetch('/api/categorias')
       .then(res => res.json())
-      .then(data => setServiceCategories(data))
+      .then(data => setCategorias(data))
       .catch(err => console.error('Error al cargar categorías:', err));
   }, []);
-  const navigate = useNavigate();
+
   return (
     <section className="services-container">
       <h1 className="services-title" style={{color:'black', fontSize:'48px', fontWeight:'750'}}>
-        Descubre <span style={{ color: '#2979ff' }}>servicios</span> cerca de ti
+        Todas las <span style={{ color: '#2979ff' }}>Categorías</span>
       </h1>
       <h1 className="services-title" style={{color:'#B2BEB5', fontSize:'18px', fontWeight:'200'}}>
-        Conecta con emprendores calificados dentro de tu comunidad.
+        Explora todas las categorías disponibles en la plataforma.
       </h1>
-      
-      <div className="services-header">
-        <BarraBusqueda />
-      </div>
 
-      <h1 className="services-title" style={{color:'#B2BEB5', fontSize:'18px', fontWeight:'200', marginTop:'60px'}}>
-        Busca los servicios más agendados del mes
-      </h1>
-      
       <div className="categories-container">
-        {serviceCategories.map((categoria, index) => (
+        {categorias.map((categoria, index) => (
           <div 
             key={index} 
             className="category-card"
@@ -87,16 +72,8 @@ const SeccionBusqueda = () => {
           </div>
         ))}
       </div>
-
-  <button 
-      className="explore-button"
-      onClick={() => navigate('/categorias')}
-    >
-      Explorar categorías
-    </button>
-
     </section>
   );
 };
 
-export default SeccionBusqueda;
+export default CategoriasComponent;
