@@ -1,22 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../styles/barrabusqueda.css'; 
 import { FaSearch } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const BarraBusqueda = () => {
+  const navigate = useNavigate();
+  const [provincia, setProvincias] = useState([]);
+  const [servicios, setServicios] = useState([]);
   const [price, setPrice] = useState([0, 100]);
+  const [filtro, setFiltro] = useState({
+    provincia: '',
+    servicio: '',
+    calificacion: '',
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [provRes, servRes] = await Promise.all([
+          axios.get('/api/provincias'),
+          axios.get('/api/servicios-disponibles'),
+        ]);
+        setProvincias(provRes.data);
+        setServicios(servRes.data);
+      } catch (error) {
+        console.error('Error al cargar datos de búsqueda:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleChange = (e) => {
+    setFiltro({ ...filtro, [e.target.name]: e.target.value });
+  };
+
+const handleBuscar = () => {
+  const query = new URLSearchParams({
+    provincia: filtro.provincia,
+    servicio: filtro.servicio,
+    calificacion: filtro.calificacion,
+    precioMin: price[0],
+    precioMax: price[1],
+  }).toString();
+
+  navigate(`/explorarFiltrados?${query}`);
+};
 
   return (
     <div className="search-filters-container">
+      
+      {/* Provincia */}
       <div className="search-filter-group">
         <label>Ubicación
-          <input type="text" placeholder="Busca servicios cerca de ti." />
+          <select name="provincia" value={filtro.provincia} onChange={handleChange}>
+            <option value="">Cualquiera</option>
+            {provincia.map((u, i) => (
+              <option key={i} value={u.provincia}>{u.provincia}</option>
+            ))}
+          </select>
         </label>
       </div>
-      <div className="search-filter-group">
-        <label>Servicios
-          <input type="text" placeholder="¿Qué necesitas?" />
-        </label>
-      </div>
+
+      {/* Precio */}
       <div className="search-filter-group price-filter-slider">
         <label>Precio
           <div className="range-slider-container">
@@ -27,16 +73,34 @@ const BarraBusqueda = () => {
               value={price[0]}
               onChange={(e) => setPrice([+e.target.value, price[1]])}
             />
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={price[1]}
+              onChange={(e) => setPrice([price[0], +e.target.value])}
+            />
           </div>
           <div className="price-range-display">${price[0]} - ${price[1]}</div>
         </label>
       </div>
+
+      {/* Calificación */}
       <div className="search-filter-group">
         <label>Calificación
-          <input type="text" placeholder="Calidad del servicio" />
+          <select name="calificacion" value={filtro.calificacion} onChange={handleChange}>
+            <option value="">Cualquiera</option>
+            <option value="5">5 estrellas</option>
+            <option value="4">4 estrellas o más</option>
+            <option value="3">3 estrellas o más</option>
+            <option value="2">2 estrellas o más</option>
+            <option value="1">1 estrella o más</option>
+          </select>
         </label>
       </div>
-      <button className="search-filters-button">
+
+      {/* Botón */}
+      <button className="search-filters-button" onClick={handleBuscar}>
         <FaSearch />
       </button>
     </div>

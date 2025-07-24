@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/panelprofesional.css'; 
-import ExplorarTodoComponent from '../components/explorarTodoComponent'
+import ExplorarTodoComponent from '../components/explorarTodos'
 
 const ExplorarTodo = () => {
   return (
