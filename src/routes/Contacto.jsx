@@ -1,3 +1,38 @@
+/**
+ * Contacto.jsx
+ * 
+ * Página de contacto donde los usuarios pueden enviar un mensaje con su nombre,
+ * correo, asunto y contenido. Está diseñada para que cualquier visitante o usuario
+ * de la plataforma pueda establecer comunicación con el equipo de soporte.
+ * 
+ * 🚀 Funcionalidad:
+ * - Permite llenar un formulario con 4 campos obligatorios:
+ *   - nombre: nombre completo del remitente
+ *   - email: dirección de correo electrónico del remitente
+ *   - asunto: breve descripción del motivo de contacto
+ *   - mensaje: contenido del mensaje o consulta
+ * - Al enviar el formulario, los datos se envían mediante una petición POST
+ *   al backend (`/api/contacto`).
+ * - Si el envío es exitoso, muestra una alerta de confirmación y limpia el formulario.
+ * - En caso de error, muestra un mensaje de alerta.
+ * 
+ * 💡 Detalles técnicos:
+ * - Usa `useState` para manejar el estado del formulario.
+ * - Usa `fetch` para realizar la solicitud al backend.
+ * - Contiene validaciones HTML5 (`required`) para campos obligatorios.
+ * 
+ * 🎯 Backend esperado:
+ * Una ruta POST `/api/contacto` que guarde el mensaje en la base de datos o envíe el mensaje al equipo de soporte.
+ * 
+ * 🧩 Estilos:
+ * Se espera que los estilos estén definidos en el archivo `../styles/contacto.css`.
+ * 
+ * 🏁 Información adicional:
+ * También muestra información de contacto estática (correo, teléfono, dirección).
+ * 
+ * 🔐 No requiere autenticación para usar esta pantalla.
+ */
+
 import React, { useState } from 'react';
 import '../styles/contacto.css';
 
@@ -14,12 +49,24 @@ const Contacto = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Datos enviados:', formData);
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await fetch('/api/contacto', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+
+    if (!res.ok) throw new Error('Error al enviar el mensaje');
+    
     alert('¡Mensaje enviado con éxito!');
     setFormData({ nombre: '', email: '', asunto: '', mensaje: '' });
-  };
+  } catch (err) {
+    console.error('❌ Error:', err);
+    alert('No se pudo enviar el mensaje. Intenta más tarde.');
+  }
+};
 
   return (
     <div className="contacto-container" style={{ paddingTop: '120px' }}>
