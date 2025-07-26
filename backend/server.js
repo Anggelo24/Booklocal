@@ -11,8 +11,48 @@ app.use(express.json());
 const profesionalinfoRoutes = require('./routes/profesional-info');
 app.use('/api/profesional-info', profesionalinfoRoutes);
 
-app.get('/', (req, res) => {
-  res.send('API activa y funcionando ✅');
+const resetPasswordRoutes = require('./routes/reset-password');
+app.use('/api/reset-password', resetPasswordRoutes);
+
+const serviciosRoutes = require('./routes/servicios');
+app.use('/api/servicios', serviciosRoutes);
+
+const servicioDetalleRoutes = require('./routes/servicioDetalle');
+app.use('/api/servicio', servicioDetalleRoutes);
+
+const categoriasRoutes = require('./routes/categorias');
+app.use('/api/categorias', categoriasRoutes);
+
+const provinciasRoutes = require('./routes/provincias');
+app.use('/api/provincias', provinciasRoutes);
+
+const serviciosDisponiblesRoutes = require('./routes/serviciosDisponibles');
+app.use('/api/servicios-disponibles', serviciosDisponiblesRoutes);
+
+const usuariosRoutes = require('./routes/usuarios');
+app.use('/api/usuarios', usuariosRoutes);
+
+const pagosRoutes = require('./routes/pagos');
+app.use('/api/pagos', pagosRoutes);
+
+const loginRoutes = require('./routes/login');
+app.use('/api/login', loginRoutes);
+
+const reservasRoutes = require('./routes/reservas');
+app.use('/api/reservas', reservasRoutes);
+
+const reservasDetallePagoRoutes = require('./routes/reservasDetallePago'); 
+app.use('/api/reservas', reservasDetallePagoRoutes);
+
+const resenasRoutes = require('./routes/resenas');
+app.use('/api/resenas', resenasRoutes);
+
+const contactoRoutes = require('./routes/contacto');
+app.use('/api/contacto', contactoRoutes);
+
+// Ruta de prueba para verificar que el servidor responde
+app.get('/api/ping', (req, res) => {
+  res.json({ message: 'API activa y funcionando ✅' });
 });
 
 // Puerto del servidor
