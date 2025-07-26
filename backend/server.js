@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const path = require('path'); 
 
 const app = express();
 
@@ -11,7 +12,7 @@ app.use(express.json());
 const profesionalinfoRoutes = require('./routes/profesional-info');
 app.use('/api/profesional-info', profesionalinfoRoutes);
 
-const resetPasswordRoutes = require('./routes/reset-password');
+/*const resetPasswordRoutes = require('./routes/reset-password');
 app.use('/api/reset-password', resetPasswordRoutes);
 
 const serviciosRoutes = require('./routes/servicios');
@@ -48,7 +49,7 @@ const resenasRoutes = require('./routes/resenas');
 app.use('/api/resenas', resenasRoutes);
 
 const contactoRoutes = require('./routes/contacto');
-app.use('/api/contacto', contactoRoutes);
+app.use('/api/contacto', contactoRoutes);*/
 
 // Ruta de prueba para verificar que el servidor responde
 app.get('/api/ping', (req, res) => {
