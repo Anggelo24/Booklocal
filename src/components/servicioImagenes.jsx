@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import '../styles/serviciodetalles.css';
 
-const ServicioImagenes = ({ images }) => {
+const ServiciosImagenes = ({ images }) => {
   const [mainImage, setMainImage] = useState(images[0]);
 
   return (
     <div className="image-gallery">
-      <img className="main-image" src={mainImage} alt="Imagen principal del servicio" />
+      <img className="main-image" src={mainImage} alt="Main service" />
       <div className="thumbnail-row">
         {images.map((img, idx) => (
           <img 
             key={idx}
             src={img}
-            alt={`Miniatura ${idx}`}
+            alt={`Thumbnail ${idx}`}
             className="thumbnail"
             onClick={() => setMainImage(img)}
           />
@@ -22,4 +22,4 @@ const ServicioImagenes = ({ images }) => {
   );
 };
 
-export default ServicioImagenes;
+export default ServiciosImagenes;

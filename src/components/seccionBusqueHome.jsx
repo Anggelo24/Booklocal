@@ -1,89 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import '../styles/seccionbusqueda.css'; 
 import BarraBusqueda from './barraBusqueda';
-import {
-  FaLaptopCode,
-  FaChalkboardTeacher,
-  FaHeart,
-  FaHammer,
-  FaCut,          // barbería (tijeras)
-  FaToiletPaper,  // plomería (símbolo WC)
-  FaPaw,          // mascotas
-  FaBroom,        // limpieza
-  FaCar,          // automotriz
-} from 'react-icons/fa';
-
-import { TbPlant } from 'react-icons/tb';
-import { PiDogFill, PiBarbellDuotone } from 'react-icons/pi';
-import { LiaChalkboardTeacherSolid } from 'react-icons/lia';
-import { GrUserWorker } from 'react-icons/gr';
-import { MdCleaningServices } from 'react-icons/md';
-import { RiUserStarFill, RiToolsFill } from 'react-icons/ri';
-import { BiUserCheck, BiBrush } from 'react-icons/bi';
+import { FaLaptopCode, FaChalkboardTeacher, FaHeart, FaHammer } from 'react-icons/fa';
+import { TbPlant } from "react-icons/tb";
+import { PiDogFill, PiBarbellDuotone } from "react-icons/pi";
+import { LiaChalkboardTeacherSolid } from "react-icons/lia";
+import { GrUserWorker } from "react-icons/gr";
 import { useNavigate } from 'react-router-dom';
 
-const iconMap = {
-  FaLaptopCode: <FaLaptopCode />,
-  FaChalkboardTeacher: <FaChalkboardTeacher />,
-  FaHeart: <FaHeart />,
-  FaHammer: <FaHammer />,
-  FaCut: <FaCut />,
-  FaToiletPaper: <FaToiletPaper />,
-  FaPaw: <FaPaw />,
-  FaBroom: <FaBroom />,
-  FaCar: <FaCar />,
-  TbPlant: <TbPlant />,
-  PiDogFill: <PiDogFill />,
-  PiBarbellDuotone: <PiBarbellDuotone />,
-  LiaChalkboardTeacherSolid: <LiaChalkboardTeacherSolid />,
-  GrUserWorker: <GrUserWorker />,
-  MdCleaningServices: <MdCleaningServices />,
-  RiUserStarFill: <RiUserStarFill />,
-  RiToolsFill: <RiToolsFill />,
-  BiUserCheck: <BiUserCheck />,
-  BiBrush: <BiBrush />,
-};
-
 const SeccionBusqueda = () => {
-  const [serviceCategories, setServiceCategories] = useState([]);
-
-  useEffect(() => {
-    fetch('/api/categorias')
-      .then(res => res.json())
-      .then(data => setServiceCategories(data))
-      .catch(err => console.error('Error al cargar categorías:', err));
-  }, []);
   const navigate = useNavigate();
+  const serviceCategories = [
+    { name: 'Tecnología', count: '123 Servicios', icon: <FaLaptopCode /> },
+    { name: 'Jardinería', count: '123 Servicios', icon: <TbPlant /> },
+    { name: 'Mascotas', count: '123 Servicios', icon: <PiDogFill /> },
+    { name: 'Tutorías', count: '123 Servicios', icon: <LiaChalkboardTeacherSolid /> },
+    { name: 'Bienestar', count: '123 Servicios', icon: <PiBarbellDuotone /> },
+    { name: 'Construcción', count: '123 Servicios', icon: <GrUserWorker /> },
+  ];
+
   return (
     <section className="services-container">
-      <h1 className="services-title" style={{color:'black', fontSize:'48px', fontWeight:'750'}}>
-        Descubre <span style={{ color: '#2979ff' }}>servicios</span> cerca de ti
-      </h1>
-      <h1 className="services-title" style={{color:'#B2BEB5', fontSize:'18px', fontWeight:'200'}}>
-        Conecta con emprendores calificados dentro de tu comunidad.
-      </h1>
+      <h1 className="services-title" style={{color:'black', fontSize:'48px', fontWeight:'750'}}>Descubre <span style={{ color: '#2979ff' }}>servicios</span> cerca de ti</h1>
+      <h1 className="services-title" style={{color:'#B2BEB5', fontSize:'18px', fontWeight:'200'}}>Conecta con emprendores calificados dentro de tu comunidad.</h1>
       
       <div className="services-header">
         <BarraBusqueda />
       </div>
 
-      <h1 className="services-title" style={{color:'#B2BEB5', fontSize:'18px', fontWeight:'200', marginTop:'60px'}}>
-        Busca los servicios más agendados del mes
-      </h1>
+      <h1 className="services-title" style={{color:'#B2BEB5', fontSize:'18px', fontWeight:'200', marginTop:'60px'}}>Busca los servicios más agendados del mes</h1>
       
       <div className="categories-container">
-        {serviceCategories.map((categoria, index) => (
-          <div 
-            key={index} 
-            className="category-card"
-            onClick={() => navigate(`/explorarcategoria/${categoria.id_categoria}`)}
-            style={{ cursor: 'pointer' }}
-          >
+        {serviceCategories.map((category, index) => (
+          <div key={index} className="category-card">
             <div className="category-icon">
-              {iconMap[categoria.icono] || <FaHammer />}
+              {category.icon}
             </div>
-            <h4 className="category-name">{categoria.categoria}</h4>
-            <p className="category-count">{categoria.total_servicios} Servicios</p>
+            <h4 className="category-name">{category.name}</h4>
+            <p className="category-count">{category.count}</p>
           </div>
         ))}
       </div>

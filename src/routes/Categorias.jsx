@@ -1,5 +1,5 @@
 import React from 'react';
-import CategoriasComponent from '../components/categorias';
+import CategoriasComponent from '../components/categoriasComponent';
 import '../styles/panelprofesional.css'; 
 
 const Categorias = () => {
