@@ -12,9 +12,16 @@ app.use(express.json());
 const profesionalinfoRoutes = require('./routes/profesional-info');
 app.use('/api/profesional-info', profesionalinfoRoutes);
 
-/*const resetPasswordRoutes = require('./routes/reset-password');
+const loginRoutes = require('./routes/login');
+app.use('/api/login', loginRoutes);
+
+const pagosRoutes = require('./routes/pagos');
+app.use('/api/pagos', pagosRoutes);
+
+const resetPasswordRoutes = require('./routes/reset-password');
 app.use('/api/reset-password', resetPasswordRoutes);
 
+/*
 const serviciosRoutes = require('./routes/servicios');
 app.use('/api/servicios', serviciosRoutes);
 
@@ -33,11 +40,7 @@ app.use('/api/servicios-disponibles', serviciosDisponiblesRoutes);
 const usuariosRoutes = require('./routes/usuarios');
 app.use('/api/usuarios', usuariosRoutes);
 
-const pagosRoutes = require('./routes/pagos');
-app.use('/api/pagos', pagosRoutes);
 
-const loginRoutes = require('./routes/login');
-app.use('/api/login', loginRoutes);
 
 const reservasRoutes = require('./routes/reservas');
 app.use('/api/reservas', reservasRoutes);
