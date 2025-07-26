@@ -53,6 +53,9 @@ app.use('/api/reservas', reservasDetallePagoRoutes);
 const resenasRoutes = require('./routes/resenas');
 app.use('/api/resenas', resenasRoutes);
 
+const contactoRoutes = require('./routes/contacto');
+app.use('/api/contacto', contactoRoutes);
+
 // Ruta de prueba para verificar que el servidor responde
 app.get('/api/ping', (req, res) => {
   res.json({ message: 'API activa y funcionando ✅' });
