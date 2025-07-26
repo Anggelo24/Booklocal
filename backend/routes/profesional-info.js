@@ -22,11 +22,11 @@ router.get('/', async (req, res) => {
 
         conn.release();
 
-        if (!profesional) {
+        if (!profesionalinfo) {
             return res.status(404).json({ error: 'No se encontró información.' });
         }
 
-        res.json(profesionalInfoFormateada);
+        res.json(profesionalinfo);
 
     }catch (err) {
         console.error('Error al obtener información profesional:', err);
