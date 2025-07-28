@@ -66,9 +66,9 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <span style={{ marginRight: '10px', color: '#88898a', fontWeight: 500 }}>
+                <div style={{ color: '#88898a', marginRight: '10px', fontWeight: '600', fontSize: '14px', paddingTop: '7px' }}>
                   Hola, {usuario.nombre}
-                </span>
+                </div>
                 <button onClick={handleLogout} className="main-action">
                   Cerrar sesión
                 </button>

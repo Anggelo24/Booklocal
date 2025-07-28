@@ -3,6 +3,21 @@
   color: black;
   padding: 2rem 1rem;
   font-family: 'Arial', sans-serif;
+  width: 100%;
+  margin-top: auto; /* This pushes the footer to the bottom */
+  overflow: hidden;
+}
+
+/* Then make sure your root layout has: */
+html, body, #root {
+  height: 100%;
+}
+
+/* And your main layout component should be: */
+.main-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .footer-content {

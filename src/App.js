@@ -23,8 +23,12 @@ import Reseña from './components/reseña';
 import ExplorarTodos from './components/explorarTodos';
 import ExplorarCategoria from './components/explorarCategoria';
 import ExplorarFiltrados from './components/explorarFiltrados';
+import { useLocation } from 'react-router-dom';
 
 function App() {
+   const location = useLocation();
+   const hideFooter = location.pathname.includes('/pago/');
+  
   return (
         <PayPalScriptProvider options={{
       'client-id': 'AboRS5ck10v0ZdZPQTDO66BT0QEffkubCa0uo6Nl66F8eQcnhWJXhLKRJV2O6zvJyC5TCfQr8le8BaGZ',
@@ -54,7 +58,7 @@ function App() {
           <Route path="/explorarCategoria/:id_categoria" element={<ExplorarCategoria />} />
           <Route path="/explorarFiltrados" element={<ExplorarFiltrados />} />
         </Routes>
-        <Footer />
+        {!hideFooter && <Footer />}
       </div>
       </PayPalScriptProvider>
   );

@@ -43,6 +43,8 @@ const Contacto = () => {
     asunto: '',
     mensaje: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,97 +52,153 @@ const Contacto = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const res = await fetch('/api/contacto', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    });
-
-    if (!res.ok) throw new Error('Error al enviar el mensaje');
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
     
-    alert('¡Mensaje enviado con éxito!');
-    setFormData({ nombre: '', email: '', asunto: '', mensaje: '' });
-  } catch (err) {
-    console.error('❌ Error:', err);
-    alert('No se pudo enviar el mensaje. Intenta más tarde.');
-  }
-};
+    try {
+      const res = await fetch('/api/contacto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      if (!res.ok) throw new Error('Error al enviar el mensaje');
+      
+      setSubmitStatus('success');
+      setFormData({ nombre: '', email: '', asunto: '', mensaje: '' });
+    } catch (err) {
+      console.error('❌ Error:', err);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="contacto-container" style={{ paddingTop: '120px' }}>
-      <div className="contacto-card">
-        <div className="contacto-header">
-          <h1>Contáctanos</h1>
-          <p>¿Tienes dudas? Escríbenos y te responderemos pronto</p>
-        </div>
-        
-        <div className="contacto-form-container">
-          <form onSubmit={handleSubmit} className="contacto-form">
-            <div className="form-group">
-              <label htmlFor="nombre">Nombre completo</label>
-              <input
-                type="text"
-                name="nombre"
-                id="nombre"
-                value={formData.nombre}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="email">Correo electrónico</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="asunto">Asunto</label>
-              <input
-                type="text"
-                name="asunto"
-                id="asunto"
-                value={formData.asunto}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="mensaje">Mensaje</label>
-              <textarea
-                name="mensaje"
-                id="mensaje"
-                rows="5"
-                value={formData.mensaje}
-                onChange={handleChange}
-                required
-              ></textarea>
-            </div>
-
-            <div className="boton-container">  
-            <button type="submit" className="submit-btn">
-              Enviar 
-            </button>
-            </div>
-          </form>
+      {/* Additional floating shape */}
+      <div className="floating-shape"></div>
+      
+      <div className="contacto-wrapper">
+        <div className="contacto-card">
           
-          <div className="contacto-info">
-            <h2 style={{Color:'black'}}>Información adicional</h2>
-            <div className="datos_contacto">
-            <p>
-              <strong>Email:</strong> soporte@booklocal.com<br />
-              <strong>Teléfono:</strong> +507 6645-7262<br />
-              <strong>Dirección:</strong> Universidad Tecnológica de Panamá, Ciudad de Panamá,
-            </p>
+          {/* Left side - Hero section */}
+          <div className="card-illustration-side">
+            <div className="illustration-wrapper">
+              <div className="contact-illustration"></div>
+              <h2>Conectemos</h2>
+              <p>Tu mensaje es importante para nosotros. Responderemos lo antes posible.</p>
+              
+              <div className="contact-details">
+                <div className="detail-item">
+                  <span className="icon">✉️</span>
+                  <span>soporte@booklocal.com</span>
+                </div>
+                <div className="detail-item">
+                  <span className="icon">📱</span>
+                  <span>+507 6645-7262</span>
+                </div>
+                <div className="detail-item">
+                  <span className="icon">📍</span>
+                  <span>UTP, Ciudad de Panamá</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Right side - Form */}
+          <div className="card-form-side">
+            <div className="form-header">
+              <h1>Envíanos un mensaje</h1>
+              <p>Completa el formulario y te responderemos pronto</p>
+            </div>
+            
+            <div className="contacto-form">
+              {/* Status messages */}
+              {submitStatus === 'success' && (
+                <div className="success-message">
+                  <span>¡Mensaje enviado! Te responderemos pronto.</span>
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div className="error-message">
+                  <span>Oops! Algo salió mal. Intenta nuevamente.</span>
+                </div>
+              )}
+
+              {/* Form fields */}
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="nombre"
+                  id="nombre"
+                  value={formData.nombre}
+                  onChange={handleChange}
+                  placeholder=" "
+                  required
+                />
+                <label htmlFor="nombre">Nombre completo</label>
+              </div>
+
+              <div className="form-group">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder=" "
+                  required
+                />
+                <label htmlFor="email">Correo electrónico</label>
+              </div>
+
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="asunto"
+                  id="asunto"
+                  value={formData.asunto}
+                  onChange={handleChange}
+                  placeholder=" "
+                  required
+                />
+                <label htmlFor="asunto">Asunto</label>
+              </div>
+
+              <div className="form-group">
+                <textarea
+                  name="mensaje"
+                  id="mensaje"
+                  rows="4"
+                  value={formData.mensaje}
+                  onChange={handleChange}
+                  placeholder=" "
+                  required
+                ></textarea>
+                <label htmlFor="mensaje">Tu mensaje</label>
+              </div>
+
+              <button 
+                type="button"
+                onClick={handleSubmit}
+                className="submit-btn"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <span className="spinner"></span> 
+                    <span>Enviando...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Enviar mensaje</span>
+                    <span>✈️</span>
+                  </>
+                )}
+              </button>
             </div>
           </div>
         </div>

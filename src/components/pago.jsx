@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import PaypalCheckoutButton from './paypalCheckoutButton';
+import '../styles/pagos.css';
+import { SiBitcoinsv } from "react-icons/si";
 
 const Pago = () => {
   const { reservaId } = useParams();
@@ -45,12 +47,51 @@ const Pago = () => {
   if (monto === null) return <div style={{ padding: 20 }}>Cargando...</div>;
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Resumen del Pago</h2>
-      <p>Total a pagar: ${monto.toFixed(2)}</p>
-      <PaypalCheckoutButton amount={monto} onSuccess={handleSuccess} payeeEmail={payeeEmail} />
+  <div className="container_pago">
+    <div className="form_pago">
+      <div className="payment_header">
+        <h2 className="payment_title">Método de Pago</h2>
+        <p className="payment_amount">Total: ${monto.toFixed(2)}</p>
+      </div>
+
+      <div className="payment_methods">
+        <label className="payment_method_label">Selecciona tu método de pago</label>
+        
+        <button className="payment_button boton_pago_crypto">
+          <span>🔐</span>
+          Crypto Wallet
+        </button>
+        
+        <button className="payment_button boton_pago_clave">
+          <span>🔑</span>
+          Pago con Clave
+        </button>
+      </div>
+
+      <div className="paypal_section">
+        <p className="paypal_label">O paga con</p>
+        <PaypalCheckoutButton 
+          amount={monto} 
+          onSuccess={handleSuccess} 
+          payeeEmail={payeeEmail} 
+        />
+      </div>
+
+      <div className="security_info">
+        <span className="security_icon">🛡️</span>
+        <span className="security_text">Pago 100% seguro y protegido</span>
+      </div>
+
+      <p className="terms_text">
+        Al proceder con el pago, aceptas los{' '}
+        <a href="#" className="terms_link">Términos y Condiciones</a>{' '}
+        y la{' '}
+        <a href="#" className="terms_link">Política de Privacidad</a>{' '}
+        de BookLocal.
+      </p>
     </div>
-  );
+  </div>
+);
 };
 
 export default Pago;

@@ -40,12 +40,13 @@ const LoginForm = () => {
 
   return (
     <div className="login-container">
-      <img style={{ height: '45px', padding: '2px' }}
+      <img 
+        style={{ height: '45px', padding: '2px' }}
         src="https://res.cloudinary.com/db3espoei/image/upload/v1750384679/logo_booklocal_czvlup.png"
         alt="BookLocal Logo"
         className="login-logo"
       />
-      <h3 className="login-title" style={{fontWeight:'bolder',fontSize:'20px'}}>Sign In</h3>
+      <h3 className="login-title">Sign In</h3>
 
       <form className="login-form" onSubmit={handleSubmit}>
         {error && <p className="error-message">{error}</p>}
@@ -80,11 +81,11 @@ const LoginForm = () => {
         <button type="submit" className="login-button">Entrar</button>
 
         <div className="forgot-password">
-          <a href="/forgot-password" style={{color:'#B2BEB5'}}>¿Olvidaste la contraseña?</a>
+          <a href="/forgot-password">¿Olvidaste la contraseña?</a>
         </div>
 
         <div className="social-login">
-          <p className="divider" style={{color:'#B2BEB5'}}>O inicia sesión con:</p>
+          <p className="divider">O inicia sesión con:</p>
           <div className="social-buttons">
             <button type="button" className="social-icon-button">
               <FcGoogle className="social-icon" />
@@ -96,7 +97,7 @@ const LoginForm = () => {
         </div>
       </form>
     </div>
-  );
+);
 };
 
 export default LoginForm;

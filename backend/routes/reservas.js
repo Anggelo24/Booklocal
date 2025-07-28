@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
+const axios = require('axios');
 
 router.post('/', async (req, res) => {
   try {
@@ -49,6 +50,39 @@ router.get('/:id/monto', async (req, res) => {
   } finally {
     if (conn) conn.release();
   }
+
+  router.get('/profesional/:id_profesional', async (req, res) => {
+  const { id_profesional } = req.params;
+  let conn;
+
+  try {
+    conn = await db.getConnection();
+
+    const [reservas] = await conn.query(`
+      SELECT 
+        r.id_reserva, 
+        r.fecha_reserva, 
+        r.hora_reserva,
+        r.estado,
+        s.nombre AS servicio_nombre,
+        CONCAT(u.nombre, ' ', u.apellido) AS cliente_nombre,
+        u.telefono AS cliente_telefono,
+        s.precio
+      FROM Reserva r
+      JOIN Servicio s ON r.id_servicio = s.id_servicio
+      JOIN Usuario u ON r.id_cliente = u.id_usuario
+      WHERE s.id_profesional = ?
+      ORDER BY r.fecha_reserva DESC, r.hora_reserva DESC
+    `, [id_profesional]);
+
+    res.json(reservas);
+  } catch (error) {
+    console.error('Error al obtener reservas:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  } finally {
+    if (conn) conn.release();
+  }
+});
 });
 
 

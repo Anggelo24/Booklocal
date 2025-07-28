@@ -21,7 +21,7 @@ const ServicioPaquetes = ({ idServicio, nombre, precio, descripcion }) => {
         <p style={{ fontWeight: '100', textAlign: 'left', fontSize: '14px' }}>{descripcion}</p>
       </div>
       <button className="primary-btn" onClick={handleContinuar}>
-        Continuar al Pago
+        Reservar
       </button>
     </div>
   );

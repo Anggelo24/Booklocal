@@ -25,7 +25,7 @@ const ExplorarFiltrado = () => {
   if (loading) return <div>Cargando servicios...</div>;
 
   return (
-    <div className="section-header">
+    <div className="section-header" style={{ paddingTop: '120px' }}>
       <h1>Resultados de tu búsqueda</h1>
       <h3 style={{ color: '#B2BEB5', fontSize: '18px', paddingBottom: '25px', fontWeight: '200' }}>
         Servicios encontrados según tus filtros

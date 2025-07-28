@@ -25,7 +25,7 @@ const ExplorarCategoria = () => {
   if (loading) return <div>Cargando servicios...</div>;
 
   return (
-    <div className="section-header">
+    <div className="section-header" style={{ marginTop: '120px' }}>
       <h1>Servicios por Categoría</h1>
       <h3 style={{ color: '#B2BEB5', fontSize: '18px', paddingBottom: '25px', fontWeight: '200' }}>
         Explora todos los servicios disponibles en esta categoría

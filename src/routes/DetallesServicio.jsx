@@ -69,7 +69,7 @@ const DetallesServicio = ({ onBack = () => window.history.back() }) => {
       .catch(err => console.error('Error al cargar servicio:', err));
   }, [id]);
 
-  if (!service) return <div style={{ paddingTop: '120px' }}>Cargando...</div>;
+  if (!service) return <div style={{ maginTop: '120px' }}>Cargando...</div>;
 
   return (
     <div className="service-detail-container" style={{ paddingTop: '120px' }}>

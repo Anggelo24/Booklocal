@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginForm from '../components/loginForm';
+import '../styles/login.css';
 
 /**
  * Login.jsx
@@ -25,7 +26,7 @@ import LoginForm from '../components/loginForm';
 const Login = () => {
     return (
         <>
-            <div style={{ paddingTop: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+            <div className="login-page-container">
                 <LoginForm />
             </div>
         </>
