@@ -120,6 +120,7 @@ router.post('/', async (req, res) => {
         <li><strong>Fecha reserva:</strong> ${new Date(reservaData.fecha_reserva).toLocaleDateString()}</li>
         <li><strong>Hora reserva:</strong> ${reservaData.hora_reserva}</li>
         <li><strong>Dirección del servicio:</strong> ${reservaData.direccion_detallada}, ${reservaData.provincia}</li>
+        <li><strong>Correo del profesional:</strong> ${reservaData.correo_profesional}</li>
       </ul>
 
       <p>Gracias por confiar en nuestra plataforma.</p>
