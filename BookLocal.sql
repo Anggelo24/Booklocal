@@ -198,3 +198,20 @@ CREATE TABLE Reporte (
     FOREIGN KEY (id_profesional_reportado) REFERENCES Profesional(id_profesional)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+ALTER TABLE Cuenta_Bancaria_Profesional
+ADD COLUMN paypal_email VARCHAR(150) UNIQUE;
+
+ALTER TABLE Pago 
+MODIFY metodo_pago ENUM('tarjeta', 'Yappy', 'ACH', 'paypal');
+
+-- Tabla: Mensaje_Contacto
+CREATE TABLE Mensaje_Contacto (
+    id_mensaje INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    asunto VARCHAR(150) NOT NULL,
+    mensaje TEXT NOT NULL,
+    fecha_envio DATETIME DEFAULT CURRENT_TIMESTAMP
+);
