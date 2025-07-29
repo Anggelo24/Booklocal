@@ -13,7 +13,7 @@ const LoginForm = () => {
   const [formData, setFormData] = useState({
     correo: '',
     contrasena: ''
-  });
+  }); 
 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -28,7 +28,7 @@ const LoginForm = () => {
     setSuccess('');
 
     try {
-      const res = await axios.post('/api/login', formData);
+      const res = await axios.post('http://localhost:5000/api/login', formData);
       login(res.data.usuario);
       setSuccess(`Bienvenido ${res.data.usuario.nombre}`);
       setTimeout(() => navigate('/'), 1000);

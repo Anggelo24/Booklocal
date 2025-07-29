@@ -34,7 +34,7 @@ const RegistroForm = () => {
     }
 
     try {
-      const response = await axios.post('/api/usuarios', {
+      const response = await axios.post('http://localhost:5000/api/usuarios', { 
         cedula: formData.cedula,
         nombre: formData.nombre,
         apellido: formData.apellido,

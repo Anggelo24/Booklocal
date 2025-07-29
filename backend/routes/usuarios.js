@@ -51,7 +51,7 @@ router.post('/', async (req, res) => {
     res.status(500).json({ error: 'Error interno al registrar' });
   } finally {
     if (conn) conn.release();
-  }
+  } 
 });
 
 module.exports = router;

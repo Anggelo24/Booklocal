@@ -3,21 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"></link>
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter> 
-    <App />
-    </BrowserRouter> 
+      <BrowserRouter>
+        <AuthProvider>
+          <PayPalScriptProvider options={{
+              'client-id': 'AboRS5ck10v0ZdZPQTDO66BT0QEffkubCa0uo6Nl66F8eQcnhWJXhLKRJV2O6zvJyC5TCfQr8le8BaGZ',
+              currency: 'USD',
+            }}>
+            <App />
+          </PayPalScriptProvider>
+        </AuthProvider> 
+      </BrowserRouter>
   </React.StrictMode>
-  
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

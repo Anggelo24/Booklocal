@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
             LIMIT 1`);
 
         conn.release();
-
+ 
         if (!profesionalinfo) {
             return res.status(404).json({ error: 'No se encontró información.' });
         }
