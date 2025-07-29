@@ -50,6 +50,9 @@ app.use('/api/reservas', reservasRoutes);
 const reservasDetallePagoRoutes = require('./routes/reservasDetallePago'); 
 app.use('/api/reservas', reservasDetallePagoRoutes);
 
+const reservasProfesionalRoutes = require('./routes/reservasProfesional');
+app.use('/api/profesional', reservasProfesionalRoutes);
+
 const resenasRoutes = require('./routes/resenas');
 app.use('/api/resenas', resenasRoutes);
 
@@ -63,6 +66,6 @@ app.get('/api/ping', (req, res) => {
 
 // Puerto del servidor
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Servidor corriendo en http://0.0.0.0:${PORT}`);
 });
