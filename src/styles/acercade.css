@@ -66,7 +66,6 @@
   overflow: hidden;
   transition: all 0.5s ease;
   background: white; 
-  border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
@@ -97,4 +96,15 @@
 .mv-card:hover::before {
   opacity: 1;
   transform: rotate(-45deg) translateY(100%);
+}
+
+@media screen and (max-width: 768px)
+  {
+  .mision-vision {
+  display: grid;
+  grid-template-columns: repeat(1, 2fr);
+  gap: 32px;
+  margin-top: 40px;
+}
+  
 }

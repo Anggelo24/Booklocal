@@ -42,9 +42,6 @@ const PagoServicio = () => {
 
     try {
       const usuario = JSON.parse(localStorage.getItem('usuario'));
-      if (!usuario || usuario.tipo_usuario !== 'cliente') {
-        return setError('Debes iniciar sesión como cliente.');
-      }
 
       const res = await axios.post('/api/reservas', {
         id_servicio: id,
