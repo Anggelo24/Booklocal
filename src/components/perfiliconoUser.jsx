@@ -97,7 +97,7 @@ const PerfilIconoUSer = () => {
               </>
             )}
         </div>
-        <div class="logout-container">
+        <div className="logout-container">
         <button onClick={handleLogout} className="cerrar-sesion-panel">
         Cerrar sesión                 
          </button> 

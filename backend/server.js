@@ -6,6 +6,7 @@ const path = require('path');
 
 const app = express();
 
+
 // Middlewares
 app.use(cors());
 app.use(express.json());
@@ -63,6 +64,11 @@ app.use('/api/contacto', contactoRoutes);
 app.get('/api/ping', (req, res) => {
   res.json({ message: 'API activa y funcionando ✅' });
 });
+
+//para descargar el pdf
+const reporteContableRoutes = require('./routes/reportesContables');
+app.use('/api/reporte-contable', reporteContableRoutes);
+
 
 // Puerto del servidor
 const PORT = process.env.PORT || 5000;
