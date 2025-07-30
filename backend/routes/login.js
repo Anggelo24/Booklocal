@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 // Ruta de login
 router.post('/', async (req, res) => {
@@ -28,20 +29,32 @@ router.post('/', async (req, res) => {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
+    //generar token JWT
+    const token = jwt.sign(
+      { 
+        id_usuario: usuario.id_usuario, 
+        email: usuario.correo,
+        tipo_usuario: usuario.tipo_usuario},
+        process.env.JWT_SECRET,
+      { expiresIn: '24h' }
+    );
+
     // Usuario autenticado
     const { id_usuario, nombre, apellido, tipo_usuario } = usuario;
 
+    console.log('token:', token);
+    
     res.json({
       message: 'Login exitoso',
+      token,
       usuario: {
         id_usuario,
         nombre,
         apellido,
         correo,
-        tipo_usuario
-      }
+        tipo_usuario}
     });
-
+    
   } catch (err) {
     console.error('Error en login:', err);
     res.status(500).json({ error: 'Error interno al iniciar sesión' });

@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/seccionimpulsar.css";
+import { AuthContext } from '../context/AuthContext';
+
 const SeccionImpulsar = () => {
+
   const navigate = useNavigate();
+  const { usuario } = useContext(AuthContext);
+
+  const handlePublicarServicio = () => {
+    if (usuario?.tipo_usuario === 'profesional') {
+      navigate('/publicarservicio', { state: { step: 3 } });
+    } else if (usuario?.tipo_usuario === 'cliente') {
+      navigate('/publicarservicio');
+    } else {
+      navigate('/login');
+    }
+  };
 
   return (
     <div className="business-promo-container">
@@ -17,11 +31,11 @@ const SeccionImpulsar = () => {
         
         <div className="action-buttons">
           <button 
-      className="action-button primary"
-      onClick={() => navigate('/publicarservicio')}
-    >
-      Publica un servicio
-    </button>
+            className="action-button primary"
+            onClick={handlePublicarServicio}
+          >
+            Publica un servicio
+          </button>
           <button className="action-button secondary">Aprende más</button>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import Home from './routes/Home';
 import Navbar from './components/navbar';
 import Footer from './components/footer';
@@ -26,6 +27,7 @@ import PublicarServicioForm from './components/publicarServicioForm';
 
 function App() {
   return (
+    <AuthProvider>
       <div className="App">
         <Navbar />
         <Routes>
@@ -53,6 +55,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
+    </AuthProvider>
   );
 }
 

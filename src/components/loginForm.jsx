@@ -22,6 +22,21 @@ const LoginForm = () => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  const handleLogin = async (credentials) => {
+    try {
+      const response = await axios.post('/api/login', credentials);
+      const { user, token } = response.data;
+      
+      // Usar el AuthContext para login
+      login(user, token);
+      
+      // Redirigir al dashboard
+      navigate('/dashboard');
+    } catch (error) {
+      setError('Credenciales incorrectas');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -29,9 +44,14 @@ const LoginForm = () => {
 
     try {
       const res = await axios.post('http://localhost:5000/api/login', formData);
-      login(res.data.usuario);
-      setSuccess(`Bienvenido ${res.data.usuario.nombre}`);
-      setTimeout(() => navigate('/'), 1000);
+      if(res.data.usuario && res.data.token){
+        login(res.data.usuario, res.data.token);
+        setSuccess(`Bienvenido ${res.data.usuario.nombre}`);
+        console.log('Token de recibido:', res.data.token);
+        setTimeout(() => navigate('/'), 1000);
+      }else{
+        setError('Error al iniciar sesión. Por favor, verifica tus credenciales.');
+      }
     } catch (err) {
       console.error('Error en login:', err);
       setError(err.response?.data?.error || 'Error al iniciar sesión');
