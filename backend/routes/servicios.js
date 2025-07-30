@@ -44,8 +44,6 @@ const parsedServicios = servicios.map((s) => {
 });
 
 res.json(parsedServicios);
-
-res.json(parsedServicios);
   } catch (err) {
     console.error('❌ Error al consultar servicios:', err);
     res.status(500).json({ error: 'Error al obtener servicios' });

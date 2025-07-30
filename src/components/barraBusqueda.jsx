@@ -135,18 +135,19 @@ const BarraBusqueda = () => {
 
         <div className="search-filter-group price-filter-slider">
           <label>Precio</label>
+
           <div className="range-slider-container">
             <input
               type="range"
               min="0"
-              max="100"
+              max="1000"
               value={price[0]}
               onChange={(e) => setPrice([+e.target.value, price[1]])}
             />
             <input
               type="range"
               min="0"
-              max="100"
+              max="1000"
               value={price[1]}
               onChange={(e) => setPrice([price[0], +e.target.value])}
             />

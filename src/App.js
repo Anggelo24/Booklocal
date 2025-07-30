@@ -24,6 +24,7 @@ import ExplorarTodos from './components/explorarTodos';
 import ExplorarCategoria from './components/explorarCategoria';
 import ExplorarFiltrados from './components/explorarFiltrados';
 import { useLocation } from 'react-router-dom';
+import PublicarServicioForm from './components/publicarServicio';
 
 function App() {
    const location = useLocation();
@@ -57,6 +58,7 @@ function App() {
           <Route path="/explorarTodos" element={<ExplorarTodos />} />
           <Route path="/explorarCategoria/:id_categoria" element={<ExplorarCategoria />} />
           <Route path="/explorarFiltrados" element={<ExplorarFiltrados />} />
+          <Route path="/publicarServicio" element={<PublicarServicioForm />} />
         </Routes>
         {!hideFooter && <Footer />}
       </div>

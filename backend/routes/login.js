@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-// Ruta de login
+// Login route with JWT token generation
 router.post('/', async (req, res) => {
   const { correo, contrasena } = req.body;
 
@@ -15,20 +17,34 @@ router.post('/', async (req, res) => {
   try {
     conn = await db.getConnection();
 
-    // Buscar al usuario por correo
+    // Find user by email
     const [usuario] = await conn.query('SELECT * FROM Usuario WHERE correo = ?', [correo]);
 
     if (!usuario) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
-    // Comparar contraseñas
+    // Compare passwords
     const match = await bcrypt.compare(contrasena, usuario.contrasena);
     if (!match) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
-    // Usuario autenticado
+    // Generate JWT token
+    const tokenPayload = {
+      id_usuario: usuario.id_usuario,
+      correo: usuario.correo,
+      tipo_usuario: usuario.tipo_usuario,
+      nombre: usuario.nombre
+    };
+
+    const token = jwt.sign(
+      tokenPayload,
+      process.env.JWT_SECRET || 'your-secret-key', // Make sure to set JWT_SECRET in your .env file
+      { expiresIn: '24h' }
+    );
+
+    // User authenticated successfully
     const { id_usuario, nombre, apellido, tipo_usuario } = usuario;
 
     res.json({
@@ -39,7 +55,8 @@ router.post('/', async (req, res) => {
         apellido,
         correo,
         tipo_usuario
-      }
+      },
+      token: token
     });
 
   } catch (err) {

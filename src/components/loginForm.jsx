@@ -8,7 +8,7 @@ import { FaFacebook } from "react-icons/fa6";
 
 const LoginForm = () => {
   const { login } = useContext(AuthContext);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     correo: '',
@@ -17,24 +17,84 @@ const LoginForm = () => {
 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
+    // Clear errors when user starts typing
+    if (error) setError('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
+    setIsLoading(true);
+
+    // Basic validation
+    if (!formData.correo || !formData.contrasena) {
+      setError('Por favor, completa todos los campos');
+      setIsLoading(false);
+      return;
+    }
 
     try {
-      const res = await axios.post('/api/login', formData);
-      login(res.data.usuario);
-      setSuccess(`Bienvenido ${res.data.usuario.nombre}`);
-      setTimeout(() => navigate('/'), 1000);
+      const response = await axios.post('http://localhost:5000/api/login', formData);
+      
+      // Check if response contains required data
+      if (response.data.usuario && response.data.token) {
+        const { usuario, token } = response.data;
+        
+        // Use AuthContext login function
+        login(usuario, token);
+        
+        setSuccess(`¡Bienvenido ${usuario.nombre}!`);
+        console.log('Login successful. Token received:', token);
+        
+        // Navigate based on user type
+        setTimeout(() => {
+          if (usuario.tipo_usuario === 'admin') {
+            navigate('/admin-dashboard');
+          } else if (usuario.tipo_usuario === 'profesional') {
+            navigate('/professional-dashboard');
+          } else {
+            navigate('/dashboard');
+          }
+        }, 1000);
+        
+      } else {
+        setError('Respuesta inválida del servidor. Intenta nuevamente.');
+      }
+      
     } catch (err) {
-      console.error('Error en login:', err);
-      setError(err.response?.data?.error || 'Error al iniciar sesión');
+      console.error('Login error:', err);
+      
+      if (err.response) {
+        // Server responded with error status
+        const { status, data } = err.response;
+        
+        switch (status) {
+          case 400:
+            setError('Datos de entrada inválidos');
+            break;
+          case 401:
+            setError('Credenciales incorrectas. Verifica tu email y contraseña.');
+            break;
+          case 500:
+            setError('Error del servidor. Intenta más tarde.');
+            break;
+          default:
+            setError(data?.error || 'Error al iniciar sesión');
+        }
+      } else if (err.request) {
+        // Network error
+        setError('Error de conexión. Verifica tu conexión a internet.');
+      } else {
+        // Other error
+        setError('Error inesperado. Intenta nuevamente.');
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -46,7 +106,9 @@ const LoginForm = () => {
         alt="BookLocal Logo"
         className="login-logo"
       />
-      <h3 className="login-title">Sign In</h3>
+      <h3 className="login-title" style={{fontWeight:'bolder',fontSize:'20px'}}>
+        Sign In
+      </h3>
 
       <form className="login-form" onSubmit={handleSubmit}>
         {error && <p className="error-message">{error}</p>}
@@ -61,6 +123,7 @@ const LoginForm = () => {
             className="form-input"
             value={formData.correo}
             onChange={handleChange}
+            disabled={isLoading}
             required
           />
         </div>
@@ -74,30 +137,41 @@ const LoginForm = () => {
             className="form-input"
             value={formData.contrasena}
             onChange={handleChange}
+            disabled={isLoading}
             required
           />
         </div>
 
-        <button type="submit" className="login-button">Entrar</button>
+        <button 
+          type="submit" 
+          className="login-button"
+          disabled={isLoading}
+        >
+          {isLoading ? 'Iniciando sesión...' : 'Entrar'}
+        </button>
 
         <div className="forgot-password">
-          <a href="/forgot-password">¿Olvidaste la contraseña?</a>
+          <a href="/forgot-password" style={{color:'#B2BEB5'}}>
+            ¿Olvidaste la contraseña?
+          </a>
         </div>
 
         <div className="social-login">
-          <p className="divider">O inicia sesión con:</p>
+          <p className="divider" style={{color:'#B2BEB5'}}>
+            O inicia sesión con:
+          </p>
           <div className="social-buttons">
-            <button type="button" className="social-icon-button">
+            <button type="button" className="social-icon-button" disabled={isLoading}>
               <FcGoogle className="social-icon" />
             </button>
-            <button type="button" className="social-icon-button">
+            <button type="button" className="social-icon-button" disabled={isLoading}>
               <FaFacebook className="social-icon" style={{ color: '#1877F2' }} />
             </button>
           </div>
         </div>
       </form>
     </div>
-);
+  );
 };
 
 export default LoginForm;

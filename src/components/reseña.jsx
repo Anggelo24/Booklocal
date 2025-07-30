@@ -14,10 +14,6 @@ const Reseña = () => {
     e.preventDefault();
 
     const usuario = JSON.parse(localStorage.getItem('usuario'));
-    if (!usuario || usuario.tipo_usuario !== 'cliente') {
-      return setMensaje('❌ Debes iniciar sesión como cliente para dejar una reseña.');
-    }
-
     try {
       await axios.post('/api/resenas', {
         id_reserva: reservaId,
