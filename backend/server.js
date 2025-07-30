@@ -59,13 +59,18 @@ app.use('/api/resenas', resenasRoutes);
 const contactoRoutes = require('./routes/contacto');
 app.use('/api/contacto', contactoRoutes);
 
+const reporteContableRoutes = require('./routes/reportesContables');
+app.use('/api/reporte-contable', reporteContableRoutes);
+
 // Ruta de prueba para verificar que el servidor responde
 app.get('/api/ping', (req, res) => {
-  res.json({ message: 'API activa y funcionando ✅' });
+  res.json({ message: 'API activa y funcionando ' });
 });
 
 // Puerto del servidor
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Servidor corriendo en http://0.0.0.0:${PORT}`);
+  console.log(` Servidor corriendo en http://0.0.0.0:${PORT}`);
 });
+
+
